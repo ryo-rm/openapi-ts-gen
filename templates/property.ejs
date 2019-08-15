@@ -5,5 +5,9 @@
 <%_ }) _%>
   }<%= helper.arraySymbol(schema) _%><%= schema.isNullable ? ' | null' : '' _%>;
 <%_ } else { _%>
+  <%_ if (!helper.isEmpty(schema.description)) { _%>
+  <%# Multi-line Support %>
+  /** <%= schema.description.replace(/(?:\r\n|\r|\n)/g, '$& * ') %> */
+  <%_ }; _%>
 "<%= name %>"<%= helper.optionalSymbol(schema) _%>: <% if ((schema.type === 'string' || schema.type === 'number') && schema.enum.length) { const enumStr = schema.enum.map(val => schema.type === 'string' ? `"${val}"` : val).join(' | ') _%><%- enumStr _%><%_ } else { _%><%= schema.type %><%= helper.arraySymbol(schema) _%><%_ } _%><%= schema.isNullable ? ' | null' : '' _%>;
 <%_ }; _%>

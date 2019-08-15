@@ -1,5 +1,6 @@
 export interface TSSchema {
   type: string
+  description?: string
   isRequired: boolean
   isRef: boolean
   isArray: boolean

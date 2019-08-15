@@ -26,6 +26,10 @@ export default function mapTS(schema: SchemaObject, required: boolean = false) {
     properties: {}
   }
 
+  if (schema.description) {
+    tsSchema.description = schema.description
+  }
+
   // Has array type
   if (schema.type === 'array') {
     const parsed = mapTS(schema.items as SchemaObject)
